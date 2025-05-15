@@ -59,4 +59,12 @@ public class User {
             System.out.println("Usuário inválido ou inexistente!");
         }
     }
+
+    static boolean  getVazia(){
+        if(register.verificaVazio()){
+            System.out.println("\n\nNão há usuários cadastrados! Adicione um usuário!\n\n");
+            return true;
+        }
+        return false;
+    }
 }

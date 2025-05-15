@@ -38,6 +38,10 @@ public class Register {
         }
     }
 
+    public boolean verificaVazio(){
+        return usuarios.isEmpty();
+    }
+
 
 
 

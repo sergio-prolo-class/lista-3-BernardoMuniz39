@@ -13,7 +13,7 @@ public class App {
         String continuar, login, senha;
 
         while(true){
-        System.out.println("Seja bem vindo! \nEscolha uma opção abaixo: \n\n1- Cadastrar um novo usuário\n2- Remover um usuário\n3- Listar todos os usuários cadastrados\n4- Autenticar um usuário\n5- Sair");
+        System.out.println("Escolha uma opção abaixo: \n\n1- Cadastrar um novo usuário\n2- Remover um usuário\n3- Listar todos os usuários cadastrados\n4- Autenticar um usuário\n5- Sair");
         option = sc.nextInt();
         sc.nextLine();
 
@@ -31,9 +31,10 @@ public class App {
                     System.out.println("Deseja cadastrar mais um usuário? (s/n) ");
                     continuar = sc.nextLine().toLowerCase();
                 }while (continuar.equals("s"));
-                sc.nextLine();
                 break;
             case 2:
+
+            if(User.getVazia())break;
             do{
                     System.out.print("Digite o login do usuário que deseja remover: ");
                     login =  sc.nextLine();
@@ -43,14 +44,16 @@ public class App {
                     System.out.println("Deseja remover mais um usuário? (s/n) ");
                     continuar = sc.nextLine().toLowerCase();
                 }while (continuar.equals("s"));
-                sc.nextLine();
                 break;
             case 3:
+            if(User.getVazia())break;
             System.out.println("\n\nLista de usuários: ");
                 User.getLogins();
                 System.out.println("");
                 break;
             case 4:
+
+            if(User.getVazia())break;
 
              do{
                     System.out.print("Digite o login do usuário: ");
@@ -63,7 +66,6 @@ public class App {
                     System.out.println("Deseja autenticar mais um usuário? (s/n) ");
                     continuar = sc.nextLine().toLowerCase();
                 }while (continuar.equals("s"));
-                sc.nextLine();
                 break;
             case 5:
              sc.close();
