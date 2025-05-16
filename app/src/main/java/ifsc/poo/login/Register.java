@@ -35,7 +35,7 @@ public class Register {
         System.out.println("Usuário " + login + " autenticado com sucesso!");
        }else{
          System.out.println("Usuário ou senha inválidos!");
-       };
+       }
     
     }
     
@@ -49,7 +49,7 @@ public class Register {
         if(usuarios.isEmpty()){
              System.out.println("\n\nNão há usuários cadastrados! Adicione um usuário!\n\n");
              return true;
-        };
+        }
         return false;
     }
 
