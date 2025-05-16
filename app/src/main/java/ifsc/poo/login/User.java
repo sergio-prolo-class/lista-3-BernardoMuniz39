@@ -6,7 +6,8 @@ public class User {
 
     public User(String login, String senha) {
         if(setLogin(login) && setSenha(senha) && register.addUser(this.login, this.senha)){
-            System.out.println("Usuário " + login +" adicionado com sucesso!");
+            System.out.println("Usuário " + login + " adicionado com sucesso!");
+            
         }else{
             System.out.println("Já existe um usuário com este nome!");
         }
@@ -18,6 +19,7 @@ public class User {
 
         //Para o caso do usuario não entrar com um login
         if(login.isEmpty()){
+            System.out.println("Usuário inválido!");
             return false;
         }
         this.login = login;
@@ -26,6 +28,7 @@ public class User {
 
     private boolean  setSenha(String senha){
         if(senha.isEmpty()){
+             System.out.println("Senha inválida!");
             return false;
         }
         this.senha = senha;
@@ -36,35 +39,6 @@ public class User {
         return this.senha;
     }
 
-    public String getLogin(){
-        return this.login;
-    }
 
-    static  void  autenticationUser(String login, String senha){
-        if(register.autenticationUser(login, senha)){
-            System.out.println("Usuário " + login + " autenticado com sucesso!");
-        }else{
-            System.out.println("Usuário ou senha inválidos!");
-        }
-    }
 
-    static void getLogins(){
-        register.getUsers();
-    }
-
-    static void removeUser(String login){
-        if(register.removeUser(login)){
-            System.out.println("Usuário " + login + " removido com sucesso!");
-        }else{
-            System.out.println("Usuário inválido ou inexistente!");
-        }
-    }
-
-    static boolean  getVazia(){
-        if(register.verificaVazio()){
-            System.out.println("\n\nNão há usuários cadastrados! Adicione um usuário!\n\n");
-            return true;
-        }
-        return false;
-    }
 }

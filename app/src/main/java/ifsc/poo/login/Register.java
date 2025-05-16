@@ -11,36 +11,49 @@ public class Register {
 
         if(!usuarios.containsKey(login)){
             usuarios.put(login, senha);
+           
             return true;
         }
          return false;
         }
     
     //Remove usuários com base em seu login
-    public boolean removeUser(String login){
+    static  void removeUser(String login){
         if(usuarios.containsKey(login)){
             usuarios.remove(login);
-            return true;
+            System.out.println("Usuário " + login + " removido com sucesso!");
+        }else{
+             System.out.println("Usuário inválido ou inexistente!");
         }
-        return false;
+       
     }
 
     //Autentica usuários
-    public boolean autenticationUser(String login, String senha){
-
-        return usuarios.containsKey(login) && usuarios.get(login).equals(senha);
+    static void autenticationUser(String login, String senha){
+        login = login.toLowerCase();
+       if (usuarios.containsKey(login) && usuarios.get(login).equals(senha)){
+        System.out.println("Usuário " + login + " autenticado com sucesso!");
+       }else{
+         System.out.println("Usuário ou senha inválidos!");
+       };
     
     }
     
-    public void getUsers(){
+    static void getUsers(){
         for(String login : usuarios.keySet()){
             System.out.println(login);
         }
     }
 
-    public boolean verificaVazio(){
-        return usuarios.isEmpty();
+    static boolean verificaVazio(){
+        if(usuarios.isEmpty()){
+             System.out.println("\n\nNão há usuários cadastrados! Adicione um usuário!\n\n");
+             return true;
+        };
+        return false;
     }
+
+    
 
 
 

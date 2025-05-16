@@ -12,6 +12,7 @@ public class App {
         int option;
         String continuar, login, senha;
 
+        
         while(true){
         System.out.println("Escolha uma opção abaixo: \n\n1- Cadastrar um novo usuário\n2- Remover um usuário\n3- Listar todos os usuários cadastrados\n4- Autenticar um usuário\n5- Sair");
         option = sc.nextInt();
@@ -34,26 +35,26 @@ public class App {
                 break;
             case 2:
 
-            if(User.getVazia())break;
+            if(Register.verificaVazio())break;
             do{
                     System.out.print("Digite o login do usuário que deseja remover: ");
                     login =  sc.nextLine();
 
-                    User.removeUser(login);
+                    Register.removeUser(login);
 
                     System.out.println("Deseja remover mais um usuário? (s/n) ");
                     continuar = sc.nextLine().toLowerCase();
                 }while (continuar.equals("s"));
                 break;
             case 3:
-            if(User.getVazia())break;
+            if(Register.verificaVazio())break;
             System.out.println("\n\nLista de usuários: ");
-                User.getLogins();
+                Register.getUsers();
                 System.out.println("");
                 break;
             case 4:
 
-            if(User.getVazia())break;
+            if(Register.verificaVazio())break;
 
              do{
                     System.out.print("Digite o login do usuário: ");
@@ -61,7 +62,7 @@ public class App {
                     System.out.print("Digite a senha: ");
                     senha = sc.nextLine();
 
-                    User.autenticationUser(login, senha);   
+                    Register.autenticationUser(login, senha);   
 
                     System.out.println("Deseja autenticar mais um usuário? (s/n) ");
                     continuar = sc.nextLine().toLowerCase();
@@ -73,6 +74,8 @@ public class App {
             return;
         }
         }
+
+
        
        
     }
