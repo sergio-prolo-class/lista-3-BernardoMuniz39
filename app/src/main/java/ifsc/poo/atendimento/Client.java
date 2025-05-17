@@ -1,15 +1,21 @@
 package ifsc.poo.atendimento;
 
 public class Client {
-    private String name, description, category, phone;
+    private String name, description, category, phone, status;
 
     public Client(String name, String description, String category, String phone) {
         if(setName(name) && setDescription(description) && setCategory(category) && setPhone(phone)){
-            Manager.addClient(this, name, description, category, phone);
+            Manager.addClient(this);
         }
     }
 
-    
+    public void setStatus(String status){
+        this.status = status;
+    }
+
+    public String getStatus(){
+        return this.status;
+    }
 
     private boolean setName(String name){
         if(name.equals("") || name.isEmpty()){
@@ -49,6 +55,18 @@ public class Client {
         }
         this.phone = phone;
         return true;
+    }
+
+    public String getPhone(){
+        return this.phone;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public String getCategory(){
+        return this.category;
     }
 
 
