@@ -1,37 +1,49 @@
 package ifsc.poo.biblioteca;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
-public class Emprestimo {
+
+public class Emprestimo  {
+    static  Map<Leitor, List<String>> datasPorLeitor = new HashMap<>();
+
+    //Registrar empréstimos de livros para leitores
+    static void registraEmprestimos(Livro livro, Leitor leitor, String data){
+        int qtdCopias = Collections.frequency(Biblioteca.getListLivros(), livro.getCodigo()); //Definindo a quantidade de cópias do livro a ser emprestado
+        boolean emprestado = leitor.getLivros().contains(livro); //Verifica se o leitor ja possui o livro emprestado
+        int qtdLivrosEmprestados = leitor.getLivros().size(); //Verifica a quantidade de livros emprestados que um leitor possui
+
+            if((qtdCopias >= 1) && (!emprestado) && (qtdLivrosEmprestados < 5)){
+                leitor.setLivros(livro); //registra o livro na lista de livros do leitor
+
+                if(!datasPorLeitor.containsKey(leitor)){ //Verifica se o leitor ja está presente no mapa
+                    datasPorLeitor.put(leitor, new LinkedList<>());//Se o leitor não estiver presente no mapa, cria uma novo par chave - valor e 
+                }
+                datasPorLeitor.get(leitor).add(data); //Adiciona no hashmap a data associada ao cliente
+
+                  System.out.println("Empréstimo registrado com sucesso para " + leitor.getNome() + " na data " + data);
+        } else {
+                System.out.println("Leitor não possui os requisitos para pegar um livro emprestado!");
+            }
+    }
+
     
+    //Listar as datas de um leitor específico
+    static void listarEmprestimos(Leitor leitor){
+        if(!datasPorLeitor.get(leitor).isEmpty()){
+            List<String> datas = datasPorLeitor.get(leitor);
 
-
-
-    /*Registrar empréstimos de livros para leitores, desde que:
-    Haja pelo menos uma cópia disponível do livro.
-    O leitor ainda não tenha esse livro emprestado.
-    O leitor possua menos de 5 livros emprestados. */
-    /*static void registraEmprestimos(Livro livro, Leitor leitor, String data){
-
-        if((Collections.frequency(livros, livro.getCodigo()) >= 1) && (!leitor.getLivros().contains(livro)) && (leitor.getLivros().size() < 5)){
-            leitor.setLivros(livro); //registra o livro na lista de livros desse leitor
-            datas.add(data);
-            emprestimos.put(leitor, leitor.getDatas());
-            System.out.println("Registro feito com sucesso!" + "\nDados do registro: \n" + "Nome do leitor: "  + leitor.getNome() + "\nLivro emprestado: " + livro.getTitulo() + "\nData de empréstimo: " + data);
+            System.out.println("Listando as datas de empréstimo de " + leitor.getNome());
+        
+            for(String data : datas){
+                System.out.println("- " + data);
+            }
+        }else{
+            System.out.println("Leitor não possui datas de empréstimo!");
         }
     }
 
-
-    //Autor: nome, Livros: livro a , livro b
-    static void listaEmprestimosOrdenado(){
-        if(!datas.isEmpty()){
-            datas.sort(Comparator.comparing(LocalDate::parse));
-
-            System.out.println("Registro de empréstimos por datas: ");
-            for (String data : datas) {
-                System.out.println("  - " + data);
-            }
-        }else{
-            System.out.println("Sem datas registradas!");
-        }
-    }/* */
 }
