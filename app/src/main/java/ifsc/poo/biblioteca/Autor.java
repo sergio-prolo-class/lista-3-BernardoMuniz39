@@ -7,14 +7,9 @@ public class Autor {
     private String nome, idioma;
     final List<Livro> livros = new LinkedList<>();
 
-    public Autor(String nome, String idioma, Livro... livros) {
+    public Autor(String nome, String idioma) {
         setNome(nome);
         setIdioma(idioma);
-
-        for(Livro livro : livros) {
-            adicionarLivro(livro);
-        }
-        
     }
 
     private boolean setNome(String nome){

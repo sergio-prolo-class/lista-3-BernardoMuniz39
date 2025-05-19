@@ -4,17 +4,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Livro {
-    private int qtd = 0; //Quantidade desse livro
     private String titulo, codigo;
     final List<Autor> autores = new LinkedList<>();
-    static int qtdlivros = 0; //quantidade de livros totais
 
-    public Livro(String titulo, Autor... autores) {
-        if(setTitulo(titulo)){
-            qtd++;
-            qtdlivros++;
-            this.codigo = String.format("ISBN%03d", qtdlivros);
-        }
+    public Livro(String titulo,String codigo, Autor... autores) {
+        setTitulo(titulo);
+        setCodigo(codigo);
 
         for (Autor autor : autores) {
             adicionarAutor(autor);
@@ -30,7 +25,16 @@ public class Livro {
         return true;
     }
 
-    public void adicionarAutor(Autor autor){
+    private boolean setCodigo(String codigo){
+        if(codigo.equals("") || codigo.isEmpty()){
+            System.out.println("Código inválido!");
+            return false;
+        }
+        this.codigo = codigo;
+        return true;
+    }
+
+    private void adicionarAutor(Autor autor){
         autores.add(autor);
     }
 
@@ -46,13 +50,6 @@ public class Livro {
         return autores;
     }
 
-    public int getQtd(){
-        return this.qtd;
-    }
-
-    public int getQtdLivros(){
-        return qtdlivros;
-    }
-
+    
     
 }

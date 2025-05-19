@@ -7,15 +7,11 @@ public class Leitor {
     private String nome, endereco, telefone;
     private int id;
     final List<Livro> livros = new LinkedList<>();
-    final List<String> datas = new LinkedList<>();
-    static int qtdleitores = 0;
 
     public Leitor(String nome, String endereco, String telefone) {
-        if(setNome(nome) && setEndereco(endereco) && setTelefone(telefone)){
-            qtdleitores++;
-            this.id = qtdleitores;
-        }
-
+        setNome(nome);
+        setEndereco(endereco);
+        setTelefone(telefone);
     }
 
     private boolean setNome (String nome){
@@ -26,6 +22,10 @@ public class Leitor {
         this.nome = nome;
         return true;
 
+    }
+
+    public void setId(int id){
+        this.id = id;
     }
 
     private boolean setEndereco (String endereco){
@@ -69,10 +69,5 @@ public class Leitor {
     public List<Livro> getLivros(){
         return livros;
     }
-
-    public List<String> getDatas(){
-        return datas;
-    }
     
-
 }

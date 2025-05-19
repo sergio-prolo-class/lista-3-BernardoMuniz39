@@ -1,23 +1,14 @@
 package ifsc.poo.biblioteca;
 
-import java.time.LocalDate;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 public class Biblioteca {
     static List<Autor> autores = new LinkedList<>();
     static List<Leitor> leitores = new LinkedList<>();
     static List<Livro> livros = new LinkedList<>();
-    static Map<Leitor,List<String>> emprestimos = new LinkedHashMap<>();
-    static List<String> datas = new  LinkedList<>();
-    
-
+    //Adiciona um novo autor
     static void addAutor(Autor autor){
-
         for(Autor a : autores){
             if(a.getNome().equalsIgnoreCase(autor.getNome())){
                 System.out.println("Autor já registrado: " + autor.getNome());
@@ -29,60 +20,40 @@ public class Biblioteca {
         System.out.println("Autor adicionado com sucesso: " + autor.getNome());
     }
 
+    //Adiciona um novo autor
     static void addLeitor(Leitor leitor){
-
-        for(Leitor l : leitores){
-            if(l.getNome().equalsIgnoreCase(leitor.getNome())){
-                System.out.println("Leitor já registrado: " + leitor.getNome());
-                return;
-            }
-        }
-        leitores.add(leitor);
+        leitores.add(leitor); //Adiciona um novo autor 
+        leitor.setId(leitores.size()); //Cria um ID na hora do cadastro
         System.out.println("Leitor adicionado com sucesso: " + leitor.getNome());
 
     }
 
+    //Adiciona um novo livro
     static void addLivro(Livro livro){
         livros.add(livro);
         System.out.println("Livro adicionado com sucesso: " + livro.getTitulo());
     }
 
-
-    static void registraEmprestimos(Livro livro, Leitor leitor, String data){
-        if((livro.getQtd() >= 1) && (!leitor.getLivros().contains(livro)) && (leitor.getLivros().size() < 5)){
-            leitor.setLivros(livro); //registra o livro na lista de livros desse leitor
-            datas.add(data);
-            emprestimos.put(leitor, leitor.getDatas());
-            System.out.println("Registro feito com sucesso!" + "\nDados do registro: \n" + "Nome do leitor: "  + leitor.getNome() + "\nLivro emprestado: " + livro.getTitulo() + "\nData de empréstimo: " + data);
-        }
+    static List<Livro> getListLivros(){
+        return livros;
     }
 
-    static void listaEmprestimosOrdenado(){
-        if(!datas.isEmpty()){
-            datas.sort(Comparator.comparing(LocalDate::parse));
+    static List<Autor> getListAutores(){
+        return autores;
+    }
 
-            System.out.println("Registro de empréstimos por datas: ");
-            for (String data : datas) {
-                System.out.println("  - " + data);
-            }
-        }else{
-            System.out.println("Sem datas registradas!");
-        }
+    static List<Leitor> getLeitores(){
+        return leitores;
     }
 
 
-    static void getAutoresOrdenado(){
-
-        if(!autores.isEmpty()){
-            List<String> nomeDeAutores = new LinkedList<>();
-
-            for(Autor a: autores){
-                nomeDeAutores.add(a.getNome());
-            }
-            Collections.sort(nomeDeAutores);
-            System.out.println(nomeDeAutores);
-        }
-    }
-
+    /*
+    Listar: 
+       - Autores, em ordem alfabética.
+       - Leitores, em ordem alfabética e por id.
+       - Livros, ordenados por título, por autor e por ISBN.
+       - Empréstimos, por data.
+       - Empréstimos de um leitor específico, por data.
+    */
 
 }
