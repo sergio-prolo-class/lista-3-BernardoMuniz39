@@ -2,20 +2,13 @@ package ifsc.poo.login;
 
 public class User {
     private String login, senha;
-    final static Register register = new Register(); //todos os usuarios compartilham o mesmo registro
-
+    
     public User(String login, String senha) {
-        if(setLogin(login) && setSenha(senha) && register.addUser(this.login, this.senha)){
-            System.out.println("Usuário " + login + " adicionado com sucesso!");
-            
-        }else{
-            System.out.println("Já existe um usuário com este nome!");
-        }
-        
+        setLogin(login);
+        setSenha(senha);
     }
 
     private boolean setLogin(String login){
-        login = login.toLowerCase();
 
         //Para o caso do usuario não entrar com um login
         if(login.isEmpty()){
@@ -37,6 +30,10 @@ public class User {
 
     public String getSenha(){
         return this.senha;
+    }
+
+    public String getLogin(){
+        return this.login;
     }
 
 

@@ -3,80 +3,34 @@
  */
 package ifsc.poo.login;
 
-import java.util.Scanner;
-
 public class App {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int option;
-        String continuar, login, senha;
+        System.out.println("Registrando 5 usuários: ");
+        Register.addUser(new User("Bernardo", "123"));
+        Register.addUser(new User("Alice", "456"));
+        Register.addUser(new User("Carlos", "789"));
+        Register.addUser(new User("Diana", "abc"));
+        Register.addUser(new User("Eduardo", "def"));
+        Register.addUser(new User("BERnardo", "123"));
+   
 
+        System.out.println("\nAutenticando o usuário Bernardo, Alice e Carlos : ");
+        Register.autenticationUser("Bernardo", "123");
+        Register.autenticationUser("Alice", "456");
+        Register.autenticationUser("Carlos", "ffff");
+
+
+        System.out.println("\nListando os usuários cadastrados: ");
+        Register.getUsers();
         
-        while(true){
-        System.out.println("Escolha uma opção abaixo: \n\n1- Cadastrar um novo usuário\n2- Remover um usuário\n3- Listar todos os usuários cadastrados\n4- Autenticar um usuário\n5- Sair");
-        option = sc.nextInt();
-        sc.nextLine();
+        System.out.println("\nRemovendo o usuário Bernardo.. ");
+        Register.removeUser("Bernardo");
 
-        switch(option){
-            case 1:
+        System.out.println("\nListando os usuários cadastrados após a remoção do usuário Bernardo: ");
+        Register.getUsers();
 
-                do{
-                    System.out.print("Digite o login do usuário: ");
-                    login =  sc.nextLine();
-                    System.out.print("Digite a senha: ");
-                    senha = sc.nextLine();
-
-                    new User(login, senha);
-
-                    System.out.println("Deseja cadastrar mais um usuário? (s/n) ");
-                    continuar = sc.nextLine().toLowerCase();
-                }while (continuar.equals("s"));
-                break;
-            case 2:
-
-            if(Register.verificaVazio())break;
-            do{
-                    System.out.print("Digite o login do usuário que deseja remover: ");
-                    login =  sc.nextLine();
-
-                    Register.removeUser(login);
-
-                    System.out.println("Deseja remover mais um usuário? (s/n) ");
-                    continuar = sc.nextLine().toLowerCase();
-                }while (continuar.equals("s"));
-                break;
-            case 3:
-            if(Register.verificaVazio())break;
-            System.out.println("\n\nLista de usuários: ");
-                Register.getUsers();
-                System.out.println("");
-                break;
-            case 4:
-
-            if(Register.verificaVazio())break;
-
-             do{
-                    System.out.print("Digite o login do usuário: ");
-                    login =  sc.nextLine();
-                    System.out.print("Digite a senha: ");
-                    senha = sc.nextLine();
-
-                    Register.autenticationUser(login, senha);   
-
-                    System.out.println("Deseja autenticar mais um usuário? (s/n) ");
-                    continuar = sc.nextLine().toLowerCase();
-                }while (continuar.equals("s"));
-                break;
-            case 5:
-             sc.close();
-            System.out.println("Finalizando programa!");
-            return;
-        }
-        }
-
-
-       
+           
        
     }
 }

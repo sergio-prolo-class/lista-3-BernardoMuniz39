@@ -32,7 +32,7 @@ public class Biblioteca {
     static void getAutorOrdenado(){
         if(!autores.isEmpty()){
             List<String> nomesAutores = new LinkedList<>();
-
+            System.out.println("{Autores ordenados por ID}");
             for(Autor a : autores){
                 nomesAutores.add(a.getNome());
             }
@@ -47,59 +47,18 @@ public class Biblioteca {
         }
     }
 
-    private String formatID(List<Integer> ids){
-        String id = new String();
-
-        for(int i = 0; i < ids.size(); i++){
-            if(i == ids.size()){
-                id += ids.get(i) + ".";
-                break;
-            }
-            id += ids.get(i) + ", ";
-        }
-        return id;
-    }
-
-
-    private String formatName(List<String> names){
-        String name = new String();
-
-        for(int i = 0; i < names.size(); i++){
-            if(i == names.size()){
-                name += names.get(i) + ".";
-                break;
-            }
-            name += names.get(i) + ", ";
-        }
-        return name;
-    }
-
     static void getLeitorOrdenado(){
         if(!leitores.isEmpty()){
+            System.out.println("{Leitores ordenados por ID}");
             for(Leitor l : leitores){
-                List<Integer> id = new LinkedList<>();
-                List<String> nomesLeitores = new LinkedList<>();
-
-                 for(Leitor a : leitores){
-                   id.add(a.getId());
-                }
-
-                for(Leitor a : leitores){
-                   nomesLeitores.add(a.getNome());
-                }
-
-                Collections.sort(id);
-                Collections.sort(nomesLeitores);
-                
-                System.out.println("Leitor: " + l.getNome());
-                
+                System.out.println("{id = " + l.getId() + " nome = " + l.getNome() + "}");
             }
-        }else{
+            }
+        else{
             System.out.println("Lista de leitores vazia!");
         }
     }
 
-    //Adiciona um novo livro
     static void addLivro(Livro livro){
         livros.add(livro);
         System.out.println("Livro adicionado com sucesso: " + livro.getTitulo());
@@ -116,15 +75,5 @@ public class Biblioteca {
     static List<Leitor> getLeitores(){
         return leitores;
     }
-
-
-    /*
-    Listar: 
-       - Autores, em ordem alfabética.
-       - Leitores, em ordem alfabética e por id.
-       - Livros, ordenados por título, por autor e por ISBN.
-       - Empréstimos, por data.
-       - Empréstimos de um leitor específico, por data.
-    */
 
 }
