@@ -9,30 +9,24 @@ public class Biblioteca {
     static List<Leitor> leitores = new LinkedList<>();
     static List<Livro> livros = new LinkedList<>();
     //Adiciona um novo autor
-    static void addAutor(Autor autor){
-        for(Autor a : autores){
-            if(a.getNome().equalsIgnoreCase(autor.getNome())){
-                System.out.println("Autor já registrado: " + autor.getNome());
-                return;
-            }
-            
+    static void addAutor(Autor... autor){
+        for(Autor a: autor){
+            autores.add(a);
         }
-        autores.add(autor);
-        System.out.println("Autor adicionado com sucesso: " + autor.getNome());
+        
     }
 
     //Adiciona um novo autor
     static void addLeitor(Leitor leitor){
         leitores.add(leitor); //Adiciona um novo autor 
         leitor.setId(leitores.size()); //Cria um ID na hora do cadastro
-        System.out.println("Leitor adicionado com sucesso: " + leitor.getNome());
 
     }
 
     static void getAutorOrdenado(){
         if(!autores.isEmpty()){
             List<String> nomesAutores = new LinkedList<>();
-            System.out.println("{Autores ordenados por ID}");
+            System.out.println("{Autores ordenados por nome}");
             for(Autor a : autores){
                 nomesAutores.add(a.getNome());
             }
@@ -40,7 +34,7 @@ public class Biblioteca {
             Collections.sort(nomesAutores);
 
             for(String s : nomesAutores){
-                System.out.println("- " + s + " ;");
+                System.out.println("- " + s + ";");
             }
         }else{
             System.out.println("Lista de autores vazia!");
@@ -61,7 +55,6 @@ public class Biblioteca {
 
     static void addLivro(Livro livro){
         livros.add(livro);
-        System.out.println("Livro adicionado com sucesso: " + livro.getTitulo());
     }
 
     static List<Livro> getListLivros(){
