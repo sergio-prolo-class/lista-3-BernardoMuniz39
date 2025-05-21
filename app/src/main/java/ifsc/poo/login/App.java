@@ -9,7 +9,7 @@ public class App {
         System.out.println("Registrando 5 usuários: ");
         Register.addUser(new User("Bernardo", "123"));
         Register.addUser(new User("Alice", "456"));
-        Register.addUser(new User("Carlos", "789"));
+        Register.addUser(new User("Sérgio Prolo", "789"));
         Register.addUser(new User("Diana", "abc"));
         Register.addUser(new User("Eduardo", "def"));
         Register.addUser(new User("BERnardo", "123"));
@@ -17,8 +17,8 @@ public class App {
 
         System.out.println("\nAutenticando o usuário Bernardo, Alice e Carlos : ");
         Register.autenticationUser("Bernardo", "123");
-        Register.autenticationUser("Alice", "456");
-        Register.autenticationUser("Carlos", "ffff");
+        Register.autenticationUser("Sérgio Prolo", "456");
+        Register.autenticationUser("Alice", "ffff");
 
 
         System.out.println("\nListando os usuários cadastrados: ");

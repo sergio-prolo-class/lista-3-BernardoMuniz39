@@ -1,20 +1,26 @@
 package ifsc.poo.atendimento;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Client {
-    private String name, description, category, phone, status;
+    private String name, phone;
+    final private List<Solicitacao> solicitation = new LinkedList<>();
 
-    public Client(String name, String description, String category, String phone) {
-        if(setName(name) && setDescription(description) && setCategory(category) && setPhone(phone)){
-            Manager.addClient(this);
-        }
+    public Client(String name, String phone, Solicitacao solicitacao) {
+        setName(name);
+        setPhone(phone);
+        solicitation.add(solicitacao);
     }
 
-    public void setStatus(String status){
-        this.status = status;
+    public void newSolicitation(Solicitacao solicitacao){
+        solicitation.add(solicitacao);
+        Manager.addClient(this);
+        System.out.println("Nova solicitação do cliente " + this.name + " registrada!");
     }
 
-    public String getStatus(){
-        return this.status;
+    public List<Solicitacao> getSolicitation(){
+        return solicitation;
     }
 
     private boolean setName(String name){
@@ -24,28 +30,6 @@ public class Client {
         }
         this.name = name;
         return true;
-    }
-
-    private boolean setDescription(String description){
-           if(description.equals("") || description.isEmpty()){
-            System.out.println("Descrição inválida");
-            return false;
-        }
-        this.description = description;
-        return true;
-    }
-
-    private boolean setCategory(String category){
-        switch (category) {
-            case "Suporte Técnico":
-            case "Informação":
-            case "Atendimento Financeiro":
-            this.category = category;
-                return true;
-            default:
-                System.out.println("Categoria inválida!");
-                return false;
-        }
     }
 
     private boolean setPhone(String phone){
@@ -64,11 +48,5 @@ public class Client {
     public String getName(){
         return this.name;
     }
-
-    public String getCategory(){
-        return this.category;
-    }
-
-
 
 }

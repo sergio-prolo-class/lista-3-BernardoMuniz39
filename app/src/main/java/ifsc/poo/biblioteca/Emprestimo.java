@@ -12,7 +12,9 @@ public class Emprestimo  {
 
     //Registrar empréstimos de livros para leitores
     static void registraEmprestimos(Livro livro, Leitor leitor, String data){
-        int qtdCopias = Collections.frequency(Biblioteca.getListLivros(), livro.getCodigo()); //Definindo a quantidade de cópias do livro a ser emprestado
+        //verificar isso aq dps
+        long qtd = Biblioteca.getListLivros().stream().filter(l -> l.getCodigo().equals(livro.getCodigo())).count();
+        long qtdCopias = Collections.frequency(Biblioteca.getListLivros(), livro.getCodigo()); //Definindo a quantidade de cópias do livro a ser emprestado
         boolean emprestado = leitor.getLivros().contains(livro); //Verifica se o leitor ja possui o livro emprestado
         int qtdLivrosEmprestados = leitor.getLivros().size(); //Verifica a quantidade de livros emprestados que um leitor possui
 

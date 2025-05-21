@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Queue;
 
 public class Manager {
-    static Queue<Client> registrados = new LinkedList<>(); //fila de todos os clientes ja registrados
     static Queue<Client> fila = new LinkedList<>(); //fila real que será atendida e terá remoção de clientes
-    static List<Client> atendidos = new ArrayList<>();//LIsta de clientes atendidos
+    static List<Client> atendidos = new ArrayList<>();//Lista de clientes atendidos
+    static List<Client> registrados = new LinkedList<>(); //fila de todos os clientes ja registrados
 
     //Registrar novas solicitações de atendimento, vinculadas ao nome e telefone do cliente.
     static void addClient(Client client){
@@ -20,9 +20,9 @@ public class Manager {
     static void getPhonesRegistred(){
 
         if(!registrados.isEmpty()){
-            System.out.println("Telefones de todos os clientes registrados:");
+            System.out.println("{Telefones de todos os clientes registrados}");
             for(Client C : registrados){
-            System.out.println(C.getPhone());
+            System.out.println("Client{" + "nome=" + C.getName() + ",telefone=" + C.getPhone() + "}");
         }
         }else{
             System.out.println("Fila vazia!");
@@ -52,23 +52,24 @@ public class Manager {
         }
     }
 
-    //Listar os nomes dos clientes já atendidos
-    static void getPhonesServed(){
-        if(!atendidos.isEmpty()){
-            System.out.println("Telefones de todos os clientes atendidos:");
+    //Listar os nomes dos clientes já atendidos.
+    static void getNameClientsServed(){
+        if(!registrados.isEmpty()){
+            System.out.println("{Nome de todos os clientes atendidos}");
             for(Client C : atendidos){
-            System.out.println(C.getPhone());
+            System.out.println("Client{" + "nome=" + C.getName() + "}");
         }
         }else{
-            System.out.println("Nenhum cliente foi atendido");
+            System.out.println("Fila vazia!");
         }
     }
 
+
     static void getPhonesWait(){
         if(!fila.isEmpty()){
-            System.out.println("Telefones de todos os clientes em espera:");
+            System.out.println("{Telefones de todos os clientes em espera}");
             for(Client C : fila){
-            System.out.println(C.getPhone());
+                System.out.println("Client{" + "nome=" + C.getName() + ",telefone=" + C.getPhone() + "}");
         }
         }else{
             System.out.println("Nenhum cliente em espera!");
@@ -76,30 +77,15 @@ public class Manager {
     }
 
     static void getReport(){
-        int sup = 0, financeiro = 0, info = 0;
-        //Total de solicitações registradas, atendidas e em espera
         System.out.println("Solicitações registradas: " + registrados.size() + "\nClientes atendidos: " + atendidos.size() + "\nClientes em espera: " + fila.size());
+        long qtdSolicitationsSup = registrados.stream().filter(cliente -> cliente.getSolicitation().stream().anyMatch(s -> s.getCategory().equals("Suporte Técnico"))).count();
+        long qtdSolicitationsInfo = registrados.stream().filter(cliente -> cliente.getSolicitation().stream().anyMatch(s -> s.getCategory().equals("Informação"))).count();
+        long qtdSolicitationsFinan  = registrados.stream().filter(cliente -> cliente.getSolicitation().stream().anyMatch(s -> s.getCategory().equals("Atendimento Financeiro"))).count();
 
-        for(Client C : registrados){
-            if(C.getCategory().equals("Suporte Técnico")){
-                sup++;
-            }else if(C.getCategory().equals("Informação")){
-                info++;
-            }else{
-                financeiro++;
-            }
+        System.out.println("Categoria: Suporte Técnico        |  Percentual: " + (qtdSolicitationsSup * 100)/registrados.size() + "%");
+        System.out.println("Categoria: Informação             |  Percentual: " + (qtdSolicitationsInfo * 100)/registrados.size() + "%");
+        System.out.println("Categoria: Atendimento Financeiro |  Percentual: " + (qtdSolicitationsFinan * 100)/registrados.size() + "%");
+
     }
 
-    //Percentual
-        double percentsup = (sup * 100.0) / registrados.size();
-        double percentinfo = (info * 100.0) / registrados.size();
-        double percentfinan = (financeiro * 100.0) / registrados.size();
-
-        System.out.println("Categoria: Suporte Técnico          Percentual: " + percentsup + "%");
-        System.out.println("Categoria: Informação               Percentual: " + percentinfo + "%");
-        System.out.println("Categoria: Atendimento Financeiro   Percentual: " + percentfinan + "%");
-
-
-    
-}
 }
