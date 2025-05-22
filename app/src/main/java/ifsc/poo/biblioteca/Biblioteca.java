@@ -9,11 +9,18 @@ public class Biblioteca {
     static List<Leitor> leitores = new LinkedList<>();
     static List<Livro> livros = new LinkedList<>();
     //Adiciona um novo autor
-    static void addAutor(Autor... autor){
-        for(Autor a: autor){
-            autores.add(a);
+    static void addAutor(Autor autor){
+        boolean cadastrado = false;
+        for(Autor a: autores){
+            if(a.getNome().equalsIgnoreCase(autor.getNome())){
+                System.out.println(autor.getNome() + " já está cadastrado!");
+                cadastrado = true;
+            }
         }
-        
+
+        if(!cadastrado){
+            autores.add(autor);
+        }
     }
 
     //Adiciona um novo autor
@@ -34,7 +41,7 @@ public class Biblioteca {
             Collections.sort(nomesAutores);
 
             for(String s : nomesAutores){
-                System.out.println("{nome =" + s + "}");
+                System.out.println("{nome=" + s + "}");
             }
         }else{
             System.out.println("Lista de autores vazia!");
@@ -44,7 +51,7 @@ public class Biblioteca {
     //id = 2, nome = germano
     static void getLeitorOrdenado(){
         if(!leitores.isEmpty()){
-            System.out.println("{Leitores ordenados por ID}");
+            System.out.println("{Leitores ordenados por ID e nome}");
 
             leitores.sort( (l1,l2) -> l1.getNome().compareTo(l2.getNome()));
             for(Leitor l : leitores){
@@ -56,7 +63,7 @@ public class Biblioteca {
         }
     }
 
-    static String formataAutores(List<Autor> autors){
+     static private String formataAutores(List<Autor> autors){
         String autor = "";
         for(Autor a : autors){
             autor += a.getNome() + ", ";

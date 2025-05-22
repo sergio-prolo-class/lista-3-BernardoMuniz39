@@ -25,7 +25,7 @@ public class Emprestimo  {
 
                 System.out.println("Empréstimo do livro " + livro.getTitulo() +  " registrado com sucesso para " + leitor.getNome() + " na data " + data);
         } else {
-                System.out.println("Leitor não possui os requisitos para pegar um livro emprestado!");
+                System.out.println(leitor.getNome() + " não possui os requisitos para pegar um livro emprestado!");
             }
     }
 
@@ -35,10 +35,10 @@ public class Emprestimo  {
         if(!datasPorLeitor.get(leitor).isEmpty()){
             List<String> datas = datasPorLeitor.get(leitor);
 
-            System.out.println("Listando as datas de empréstimo de " + leitor.getNome());
+            System.out.println("{Datas de empréstimo de " + leitor.getNome() + "}");
         
             for(String data : datas){
-                System.out.println("- " + data);
+                System.out.println("Usuário{nome=" + leitor.getNome() + ",data=" + data + "}");
             }
         }else{
             System.out.println("Leitor não possui datas de empréstimo!");
