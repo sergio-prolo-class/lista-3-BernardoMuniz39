@@ -18,14 +18,121 @@ Fique a vontade para usar os métodos de cada objeto conforme sua curiosidade!
 
 ## Login
 
+```mermaid
+%%{init: {'flowchart': {'nodeSpacing': 100, 'rankSpacing': 100}}}%%
+  classDiagram
+        direction LR
+        class App{
+           
+        }
+        class Register {
+          +users: Set~User~
+          +addUSer(usuario: User)void
+          +removeUser(login: String)void
+          +autenticationUser(login: String, senha: String)void
+          +getUsers()void
+        }
+        class User {
+          -login: String
+          -senha: String
+          +User(login: String, senha: String)
+        }
+          App ..> Register : usa métodos estáticos
+         Register "1" --> "*"User
+```
 
-<p align="center">
-  <img src="loginUML.png" alt="descrição da imagem" width="850"/>
-</p>
 
 ## Atendimento
 
-<p align="center">
-  <img src="atendimentoUML.png" alt="descrição da imagem" width="850"/>
-</p>
-        
+```mermaid
+%%{init: {'flowchart': {'nodeSpacing': 100, 'rankSpacing': 100}}}%%
+  classDiagram
+        direction LR
+        class App{
+
+        }
+        class Manager {
+          +fila: Queue~Client~
+          +atendidos: List~Client~
+          +registrados: List~Client~
+          +addClient(client: Client)void
+          +getPhonesRegistred()void
+          +getNexClient()void
+          +toMeetNextClient()void
+          +getNameClientsServed()void
+          +getPhonesWait()void
+          +getReport()
+        }
+        class Client {
+          -name: String
+          -phone: String
+          +Client(name: String, phone: String, solicitacao:Solicitacao)
+          +newSolicitation(solicitacao: Solicitacao)void
+          +getSolicitation(): List<Solicitacao>
+        }
+        class Solicitacao{
+            -description: String
+            -category: String
+        }
+          App ..> Manager : usa métodos estáticos
+         Client "1" --> "*"Solicitacao
+         Manager "1" --* "*" Client
+```
+## Biblioteca
+```mermaid
+%%{init: {'flowchart': {'nodeSpacing': 100, 'rankSpacing': 100}}}%%
+classDiagram
+        direction LR
+        class App{
+          
+        }
+        class Biblioteca {
+          +autores: List~Autor~
+          +leitores: List~Leitor~
+          +livros: List~Livro~
+
+          +addAutor(autor: Autor)void
+          +addLeitor(Leitor: Leitor)void
+          +addLivro(livro: Livro)void
+          +getAutorOrdenado()void
+          +getLeitorOrdenado()void
+          +getLivroOrdenado()void
+        }
+        class Autor {
+          -nome: String
+          -idioma: String
+          -livros: List~Livro~
+         +adicionarLivro(Livro livro)void
+
+        }
+        class Leitor{
+            -nome, endereco, telefone: String
+            -id: int
+            -livros: List~Livro~
+            +getLivros()List~Livro~
+            +setId(id: int)void
+            +getId()void
+        }
+        class Livro{
+          -titulo, codigo: String
+          -autores: List~Autor~
+          +getAutores()List~Autor~
+          +adicionarAutor(autor: Autor)void
+        }
+        class Emprestimo{
+          +datasPorLeitor: Map~Leitor, List<String>~
+          +registraEmprestimos(livro: Livro,leitor: Leitor, data: String)void
+          +listaEmprestimos(leitor: Leitor)void
+        }
+              App ..> Biblioteca : usa métodos
+    App ..> Emprestimo : usa métodos
+
+    Biblioteca "1" o-- "*" Autor
+    Biblioteca "1" o-- "*" Livro
+    Biblioteca "1" o-- "*" Leitor
+
+    Livro "*" o-- "*" Autor
+    Autor "*" o-- "*" Livro
+    Emprestimo "1" --> "*" Leitor : contém datas
+    Emprestimo "1" --> "*" Livro : contém empréstimos
+```
