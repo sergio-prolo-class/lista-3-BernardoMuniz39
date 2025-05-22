@@ -17,7 +17,15 @@ Para utilizar o projeto, certifique-se de estar dentro da pasta do exercício qu
 Fique a vontade para usar os métodos de cada objeto conforme sua curiosidade!
 
 ## Login
+O exercício simula uma aplicação web que conta com uma classe utilitária estática responsável por gerenciar os usuários registrados no sistema.
 
+Requisitos funcionais da classe:
+- Cadastra novos usuários a partir de login e senha, garantindo que logins não se repitam.
+- Remove usuários com base em seu login.
+- Lista os logins de todos os usuários cadastrados, preservando a ordem de cadastro.
+- Autentica usuários, verificando se login e senha correspondem a um usuário existente.
+
+#### Diagrama UML:
 ```mermaid
 %%{init: {'flowchart': {'nodeSpacing': 100, 'rankSpacing': 100}}}%%
   classDiagram
@@ -43,7 +51,18 @@ Fique a vontade para usar os métodos de cada objeto conforme sua curiosidade!
 
 
 ## Atendimento
+O exercício simula uma fila de atendimento que organiza os clientes conforme a ordem de chegada de novas solicitações.
 
+Requisitos funcionais:
+- Registra novas solicitações de atendimento, vinculadas ao nome e telefone do cliente.
+- Lista os telefones de todos os clientes já registrados.
+- Imprimi o nome do próximo cliente da fila.
+- Atende o próximo cliente da fila.
+- Listar os nomes dos clientes já atendidos.
+- Listar os telefones dos clientes ainda em espera.
+- Gerar relatório estatístico contendo o total de solicitações registradas, atendidas e em espera e a distribuição percentual das solicitações por categoria.
+
+#### Diagrama UML:
 ```mermaid
 %%{init: {'flowchart': {'nodeSpacing': 100, 'rankSpacing': 100}}}%%
   classDiagram
@@ -79,6 +98,18 @@ Fique a vontade para usar os métodos de cada objeto conforme sua curiosidade!
          Manager "1" --* "*" Client
 ```
 ## Biblioteca
+O exercício simula o funcionamento básico de um sistema de biblioteca, fazendo registros de novos leitores, autores, livros e realizando empréstimos.
+
+Requisitos funcionais:
+- Cadastra autores, livros e leitores
+- Registrar empréstimos de livros para leitores
+- Lista todos os autores em ordem alfabética
+- Lista os leitores por ordem alfabética e por ID
+- Lista os livros ordenados por título, autor e código ISBN
+- Realiza empréstimos de livro para um leitor
+- Lista as datas de todos os emprestimos de um leitor
+
+#### Diagrama UML:
 ```mermaid
 %%{init: {'flowchart': {'nodeSpacing': 100, 'rankSpacing': 100}}}%%
 classDiagram
