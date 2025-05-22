@@ -1,11 +1,9 @@
 package ifsc.poo.biblioteca;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
 
 public class Emprestimo  {
     static  Map<Leitor, List<String>> datasPorLeitor = new HashMap<>();
@@ -13,8 +11,7 @@ public class Emprestimo  {
     //Registrar empréstimos de livros para leitores
     static void registraEmprestimos(Livro livro, Leitor leitor, String data){
         //verificar isso aq dps
-        long qtd = Biblioteca.getListLivros().stream().filter(l -> l.getCodigo().equals(livro.getCodigo())).count();
-        long qtdCopias = Collections.frequency(Biblioteca.getListLivros(), livro.getCodigo()); //Definindo a quantidade de cópias do livro a ser emprestado
+        long qtdCopias = Biblioteca.getListLivros().stream().filter(l -> l.getCodigo().equals(livro.getCodigo())).count(); //Definindo a quantidade de cópias do livro a ser emprestado//Definindo a quantidade de cópias do livro a ser emprestado
         boolean emprestado = leitor.getLivros().contains(livro); //Verifica se o leitor ja possui o livro emprestado
         int qtdLivrosEmprestados = leitor.getLivros().size(); //Verifica a quantidade de livros emprestados que um leitor possui
 
@@ -26,7 +23,7 @@ public class Emprestimo  {
                 }
                 datasPorLeitor.get(leitor).add(data); //Adiciona no hashmap a data associada ao cliente
 
-                  System.out.println("Empréstimo registrado com sucesso para " + leitor.getNome() + " na data " + data);
+                System.out.println("Empréstimo do livro " + livro.getTitulo() +  " registrado com sucesso para " + leitor.getNome() + " na data " + data);
         } else {
                 System.out.println("Leitor não possui os requisitos para pegar um livro emprestado!");
             }

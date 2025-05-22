@@ -34,18 +34,44 @@ public class Biblioteca {
             Collections.sort(nomesAutores);
 
             for(String s : nomesAutores){
-                System.out.println("- " + s + ";");
+                System.out.println("{nome =" + s + "}");
             }
         }else{
             System.out.println("Lista de autores vazia!");
         }
     }
-
+    //id = 1, nome = bernardo
+    //id = 2, nome = germano
     static void getLeitorOrdenado(){
         if(!leitores.isEmpty()){
             System.out.println("{Leitores ordenados por ID}");
+
+            leitores.sort( (l1,l2) -> l1.getNome().compareTo(l2.getNome()));
             for(Leitor l : leitores){
-                System.out.println("{id = " + l.getId() + " nome = " + l.getNome() + "}");
+                System.out.println("{id = " + l.getId() + ",nome = " + l.getNome() + "}");
+            }
+            }
+        else{
+            System.out.println("Lista de leitores vazia!");
+        }
+    }
+
+    static String formataAutores(List<Autor> autors){
+        String autor = "";
+        for(Autor a : autors){
+            autor += a.getNome() + ", ";
+        }
+        String autorformatado = autor.substring(0, autor.length() - 1);
+        return autorformatado;
+    }
+
+    static void getLivrosOrdenado(){
+        if(!leitores.isEmpty()){
+            System.out.println("{Livros ordenados por ID, título e autores}");
+
+            livros.sort( (l1,l2) -> l1.getCodigo().compareTo(l2.getCodigo()));
+            for(Livro l : livros){
+                System.out.println("{id = " + l.getCodigo() + ", título = " + l.getTitulo() + ", autores = "  + formataAutores(l.getAutores()) +"}");
             }
             }
         else{
@@ -61,12 +87,5 @@ public class Biblioteca {
         return livros;
     }
 
-    static List<Autor> getListAutores(){
-        return autores;
-    }
-
-    static List<Leitor> getLeitores(){
-        return leitores;
-    }
 
 }
