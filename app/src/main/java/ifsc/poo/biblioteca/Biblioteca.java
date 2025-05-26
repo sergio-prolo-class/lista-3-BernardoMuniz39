@@ -1,6 +1,5 @@
 package ifsc.poo.biblioteca;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,16 +31,11 @@ public class Biblioteca {
 
     static void getAutorOrdenado(){
         if(!autores.isEmpty()){
-            List<String> nomesAutores = new LinkedList<>();
             System.out.println("{Autores ordenados por nome}");
+            autores.sort( (a1,a2) -> a1.getNome().compareTo(a2.getNome()));
+
             for(Autor a : autores){
-                nomesAutores.add(a.getNome());
-            }
-
-            Collections.sort(nomesAutores);
-
-            for(String s : nomesAutores){
-                System.out.println("{nome=" + s + "}");
+                System.out.println("Autor{nome=" + a.getNome() + "}");
             }
         }else{
             System.out.println("Lista de autores vazia!");
@@ -55,7 +49,7 @@ public class Biblioteca {
 
             leitores.sort( (l1,l2) -> l1.getNome().compareTo(l2.getNome()));
             for(Leitor l : leitores){
-                System.out.println("{id = " + l.getId() + ",nome = " + l.getNome() + "}");
+                System.out.println("Leitor{id = " + l.getId() + ",nome = " + l.getNome() + "}");
             }
             }
         else{
@@ -78,7 +72,7 @@ public class Biblioteca {
 
             livros.sort( (l1,l2) -> l1.getCodigo().compareTo(l2.getCodigo()));
             for(Livro l : livros){
-                System.out.println("{id = " + l.getCodigo() + ", título = " + l.getTitulo() + ", autores = "  + formataAutores(l.getAutores()) +"}");
+                System.out.println("Livro{id = " + l.getCodigo() + ", título = " + l.getTitulo() + ", autores = "  + formataAutores(l.getAutores()) +"}");
             }
             }
         else{

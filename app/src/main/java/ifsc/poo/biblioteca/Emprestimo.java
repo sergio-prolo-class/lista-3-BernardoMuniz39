@@ -13,7 +13,7 @@ public class Emprestimo  {
         //verificar isso aq dps
         long qtdCopias = Biblioteca.getListLivros().stream().filter(l -> l.getCodigo().equals(livro.getCodigo())).count(); //Definindo a quantidade de cópias do livro a ser emprestado//Definindo a quantidade de cópias do livro a ser emprestado
         boolean emprestado = leitor.getLivros().contains(livro); //Verifica se o leitor ja possui o livro emprestado
-        int qtdLivrosEmprestados = leitor.getLivros().size(); //Verifica a quantidade de livros emprestados que um leitor possui
+        int qtdLivrosEmprestados = leitor.getLivros().size();//Verifica a quantidade de livros emprestados que um leitor possui
 
             if((qtdCopias >= 1) && (!emprestado) && (qtdLivrosEmprestados < 5)){
                 leitor.setLivros(livro); //registra o livro na lista de livros do leitor
@@ -38,7 +38,7 @@ public class Emprestimo  {
             System.out.println("{Datas de empréstimo de " + leitor.getNome() + "}");
         
             for(String data : datas){
-                System.out.println("Usuário{nome=" + leitor.getNome() + ",data=" + data + "}");
+                System.out.println("Leitor{nome=" + leitor.getNome() + ",data=" + data + "}");
             }
         }else{
             System.out.println("Leitor não possui datas de empréstimo!");
